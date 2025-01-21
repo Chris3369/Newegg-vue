@@ -1,7 +1,9 @@
 import axios from 'axios'
+import { ElMessage } from 'element-plus'
 
 let instance = axios.create({
     baseURL: import.meta.env.VITE_API_URL,
+    withCredentials: true,
     headers: {
         'Content-Type': 'application/json',
     },
@@ -39,6 +41,11 @@ instance.interceptors.response.use((response) => {
             message = '未知錯誤'
             break
     }
+
+    ElMessage({
+        type: 'error',
+        message,
+    })
 
     return Promise.reject(error)
 })

@@ -7,7 +7,7 @@ let router = createRouter({
         {
             path: '/',
             name: 'home',
-            component: () => import('../views/Home.vue')
+            component: () => import('../layout/index.vue')
 
         },
         {
@@ -16,6 +16,15 @@ let router = createRouter({
             component: () => import('../views/Login.vue')
 
         },
+        {
+            path: '/404',
+            name: '404',
+            component: () => import('../views/NotFound.vue')
+        },
+        {
+            path: '/:pathMatch(.*)*',
+            redirect: '/404',
+        }
     ]
 })
 

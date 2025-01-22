@@ -4,22 +4,12 @@
             <Logo />
             <el-scrollbar class="scrollbar">
                 <el-menu background-color="#001529" text-color="white">
-                    <el-menu-item index="1">Home</el-menu-item>
-                    <el-menu-item index="2">About</el-menu-item>
-
-                    <el-sub-menu index="3">
-                        <template #title>Submenu</template>
-                        <el-menu-item index="2-1">item one</el-menu-item>
-                        <el-menu-item index="2-2">item two</el-menu-item>
-                        <el-menu-item index="2-3">item three</el-menu-item>
-                    </el-sub-menu>
+                    <Menu :menus="store.menuRoutes"></Menu>
                 </el-menu>
-
             </el-scrollbar>
         </div>
         <div class="tabbar"></div>
         <div class="main">
-            <p class="test">orange</p>
         </div>
 
     </div>
@@ -27,6 +17,13 @@
 
 <script setup lang='ts'>
 import Logo from './Logo.vue';
+import Menu from './Menu.vue';
+
+import userStore from '../store/user.store'
+
+const store = userStore()
+
+
 </script>
 
 <style scoped>
@@ -69,20 +66,8 @@ import Logo from './Logo.vue';
     height: calc(100vh - 50px);
 }
 
-
-
-
-
-
-
-.scrollbar p {
-    color: white;
+.scrollbar .el-menu {
+    border-right: none;
 }
 
-
-
-.test {
-    height: 10000px;
-    background-color: aliceblue;
-}
 </style>

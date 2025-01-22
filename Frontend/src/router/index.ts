@@ -1,31 +1,10 @@
 import { createRouter, createWebHistory } from "vue-router"
+import { constantRoutes } from "./routes"
 
 let router = createRouter({
 
     history: createWebHistory(import.meta.env.BASE_URL),
-    routes: [
-        {
-            path: '/',
-            name: 'home',
-            component: () => import('../layout/Layout.vue')
-
-        },
-        {
-            path: '/login',
-            name: 'login',
-            component: () => import('../views/Login.vue')
-
-        },
-        {
-            path: '/404',
-            name: '404',
-            component: () => import('../views/NotFound.vue')
-        },
-        {
-            path: '/:pathMatch(.*)*',
-            redirect: '/404',
-        }
-    ]
+    routes: constantRoutes
 })
 
 export default router

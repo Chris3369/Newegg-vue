@@ -1,15 +1,27 @@
 import { defineStore } from 'pinia'
+import type { RouteRecordRaw } from 'vue-router'
 import axios from '../lib/axios'
+import { constantRoutes } from '../router/routes'
+
+interface UserState {
+    name: string,
+    email: string,
+    role: string,
+    menuRoutes: RouteRecordRaw[]
+}
+
 
 let userStore = defineStore('user', {
-    state: () => {
+    state: (): UserState => {
         return {
             name: '',
             email: '',
-            role: ''
+            role: '',
 
             // 另一種作法是去 localStorage 取 token, 來實現持久化
             // token: localStorage.getItem('token')
+
+            menuRoutes: constantRoutes
         }
     },
     actions: {

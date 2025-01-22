@@ -3,10 +3,7 @@ export const constantRoutes = [
         path: '/',
         name: 'layout',
         component: () => import('../layout/Layout.vue'),
-        meta: {
-            title: 'Layout',
-            hidden: false
-        },
+        redirect: '/home',
         children: [
             {
                 path: '/home',
@@ -17,16 +14,54 @@ export const constantRoutes = [
                     hidden: false
                 }
             },
+        ]
+    },
+    {
+        path:'/management',
+        name: 'management',
+        component: () => import('../layout/Layout.vue'),
+        meta: {
+            title: 'Management',
+            hidden: false
+        },
+        children: [
             {
-                path: '/about',
-                name: 'about',
-                component: () => import('../views/About.vue'),
+                path: '/management/menu',
+                name: 'menu-management',
+                component: () => import('../views/MenuManagement.vue'),
                 meta: {
-                    title: 'About',
+                    title: 'Menu',
+                    hidden: false
+                }
+            },
+            {
+                path: '/management/user',
+                name: 'user-management',
+                component: () => import('../views/UserManagement.vue'),
+                meta: {
+                    title: 'User',
+                    hidden: false
+                }
+            },
+            {
+                path: '/management/role',
+                name: 'role-management',
+                component: () => import('../views/RoleManagement.vue'),
+                meta: {
+                    title: 'Role',
                     hidden: false
                 }
             }
         ]
+    },
+    {
+        path: '/screen',
+        name: 'screen',
+        component: () => import('../views/Screen.vue'),
+        meta: {
+            title: 'Screen',
+            hidden: false
+        }
     },
     {
         path: '/login',

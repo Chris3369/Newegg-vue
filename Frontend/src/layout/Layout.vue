@@ -10,14 +10,16 @@
         </div>
         <div class="tabbar"></div>
         <div class="main">
+           <Content></Content>
         </div>
 
     </div>
 </template>
 
 <script setup lang='ts'>
-import Logo from './Logo.vue';
-import Menu from './Menu.vue';
+import Logo from './Logo.vue'
+import Menu from './Menu.vue'
+import Content from './Content.vue'
 
 import userStore from '../store/user.store'
 

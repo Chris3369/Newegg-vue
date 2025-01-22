@@ -1,6 +1,8 @@
 <template>
     <div class="container">
-        <div class="slider"></div>
+        <div class="slider">
+            <Logo />
+        </div>
         <div class="tabbar"></div>
         <div class="main">
             <p class="test">orange</p>
@@ -10,7 +12,7 @@
 </template>
 
 <script setup lang='ts'>
-
+import Logo from './Logo.vue';
 </script>
 
 <style scoped>

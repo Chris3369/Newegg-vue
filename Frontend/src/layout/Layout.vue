@@ -3,7 +3,12 @@
         <div class="slider">
             <Logo />
             <el-scrollbar class="scrollbar">
-                <el-menu background-color="#001529" text-color="white">
+                <el-menu 
+                    background-color="#001529" 
+                    text-color="white"
+                    active-text-color="#ffd04b"
+                    :default-active="$route.path"
+                >
                     <Menu :menus="store.menuRoutes"></Menu>
                 </el-menu>
             </el-scrollbar>
@@ -12,11 +17,11 @@
         <div class="main">
            <Content></Content>
         </div>
-
     </div>
 </template>
 
 <script setup lang='ts'>
+import { useRoute } from 'vue-router'
 import Logo from './Logo.vue'
 import Menu from './Menu.vue'
 import Content from './Content.vue'
@@ -24,6 +29,8 @@ import Content from './Content.vue'
 import userStore from '../store/user.store'
 
 const store = userStore()
+
+const $route = useRoute()
 
 
 </script>

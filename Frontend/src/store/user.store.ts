@@ -13,14 +13,19 @@ interface UserState {
 
 let userStore = defineStore('user', {
     state: (): UserState => {
-        return {
+        const userData = localStorage.getItem('user')
+        let user = userData ? JSON.parse(userData) : null
+
+        user = user ? {
+            ...user,
+        } : {
             name: '',
             email: '',
             role: '',
+        }
 
-            // 另一種作法是去 localStorage 取 token, 來實現持久化
-            // token: localStorage.getItem('token')
-
+        return {
+            ...user,
             menuRoutes: constantRoutes
         }
     },
@@ -32,6 +37,13 @@ let userStore = defineStore('user', {
                 this.name = data.name
                 this.email = data.email
                 this.role = data.role
+
+                // 將 user 存入 localStorage
+                localStorage.setItem('user', JSON.stringify({
+                    name: this.name,
+                    email: this.email,
+                    role: this.role
+                }))
 
                 // async 返回成功的 promise
                 return 'ok'

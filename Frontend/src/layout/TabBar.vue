@@ -1,9 +1,9 @@
 <template>
     <div class="tabbar">
         <div class="left">
-            <el-icon style="margin-right: 10px;" @click="store.toggleCollapse">
+            <el-icon style="margin-right: 10px;" @click="settingStore.toggleCollapse">
                 <!-- <Expand /> -->
-                <component class="collapse" :is="store.collapse ? Expand : Fold"></component>
+                <component class="collapse" :is="settingStore.collapse ? Expand : Fold"></component>
             </el-icon>
 
             <el-breadcrumb :separator-icon="ArrowRight">
@@ -16,13 +16,12 @@
 
         </div>
         <div class="right">
-            <el-button type="primary" size="small" circle :icon="Refresh" @click="store.toggleRefresh"></el-button>
-            <el-button type="primary" size="small" circle :icon="FullScreen"></el-button>
+            <el-button type="primary" size="small" circle :icon="Refresh" @click="settingStore.toggleRefresh"></el-button>
             <el-button type="primary" size="small" circle :icon="Setting"></el-button>
             <img src="/logo.svg" alt="">
 
             <el-dropdown>
-                <span>admin</span>
+                <span>{{ userStore.name }}</span>
                 <template #dropdown>
                     <el-dropdown-menu>
                         <el-dropdown-item>Logout</el-dropdown-item>
@@ -34,14 +33,20 @@
 </template>
 
 <script setup lang='ts'>
-import { ArrowRight, Expand, Fold, Refresh, FullScreen, Setting } from '@element-plus/icons-vue'
-import settingStore from '../store/setting.store'
+import { ArrowRight, Expand, Fold, Refresh, Setting } from '@element-plus/icons-vue'
+import SettingStore from '../store/setting.store'
+import UserStore from '../store/user.store'
 import { useRoute } from 'vue-router'
 
 const $route = useRoute()
 
-const store = settingStore()
+const userStore = UserStore()
+const settingStore = SettingStore()
 
+// Logout
+// redirect to login page
+// send logut request
+// clear user info in store & localstorage
 </script>
 
 <style scoped>

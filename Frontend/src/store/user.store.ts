@@ -53,6 +53,21 @@ let userStore = defineStore('user', {
             } catch (error: any) {
                 return Promise.reject(error.response.data.message)
             }
+        },
+        async logout() {
+            try {
+                await axios.post('/auth/logout')
+
+                this.name = ''
+                this.email = ''
+                this.role = ''
+                this.menuRoutes = []
+
+                localStorage.removeItem('user')
+                return 'ok'
+            } catch (error: any) {
+                return Promise.reject(error.response.data.message)
+            }
         }
     },
     getters: {}

@@ -24,7 +24,7 @@
                 <span>{{ userStore.name }}</span>
                 <template #dropdown>
                     <el-dropdown-menu>
-                        <el-dropdown-item>Logout</el-dropdown-item>
+                        <el-dropdown-item @click="logout">Logout</el-dropdown-item>
                     </el-dropdown-menu>
                 </template>
             </el-dropdown>
@@ -36,17 +36,24 @@
 import { ArrowRight, Expand, Fold, Refresh, Setting } from '@element-plus/icons-vue'
 import SettingStore from '../store/setting.store'
 import UserStore from '../store/user.store'
-import { useRoute } from 'vue-router'
+import { useRoute, useRouter } from 'vue-router'
 
 const $route = useRoute()
+const $router = useRouter()
 
 const userStore = UserStore()
 const settingStore = SettingStore()
 
 // Logout
-// redirect to login page
-// send logut request
-// clear user info in store & localstorage
+// 1. send logut request
+// 2. clear user info in store & localstorage
+// 3. redirect to login page
+
+const logout = async () => {
+    await userStore.logout()
+    $router.replace({ name: 'login' })
+}
+
 </script>
 
 <style scoped>

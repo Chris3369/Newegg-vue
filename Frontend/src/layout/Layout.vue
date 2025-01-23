@@ -1,18 +1,18 @@
 <template>
     <div class="container">
-        <div class="slider">
+        <div class="slider" :class="settingStore.collapse ? 'collapse' : ''">
             <Logo />
             <el-scrollbar class="scrollbar">
                 <el-menu background-color="#001529" text-color="white" active-text-color="#ffd04b"
                     :default-active="$route.path">
-                    <Menu :menus="store.menuRoutes"></Menu>
+                    <Menu :menus="userStore.menuRoutes"></Menu>
                 </el-menu>
             </el-scrollbar>
         </div>
-        <div class="tabbar">
+        <div class="layout-tabbar" :class="settingStore.collapse ? 'collapse' : ''">
             <TabBar />
         </div>
-        <div class="main">
+        <div class="layout-content" :class="settingStore.collapse ? 'collapse' : ''">
             <Content />
         </div>
     </div>
@@ -25,9 +25,11 @@ import Menu from './Menu.vue'
 import TabBar from './TabBar.vue'
 import Content from './Content.vue'
 
-import userStore from '../store/user.store'
+import UserStore from '../store/user.store'
+import SettingStore from '../store/setting.store'
 
-const store = userStore()
+const userStore = UserStore()
+const settingStore = SettingStore()
 
 const $route = useRoute()
 
@@ -44,18 +46,31 @@ const $route = useRoute()
     width: 260px;
     height: 100vh;
     background-color: #001529;
+
+    transition: all 0.3s ease;
 }
 
-.container .tabbar {
-    width: calc(100% - 260px);
+.container .slider.collapse {
+    width: 55px;
+}
+
+.container .layout-tabbar {
+    width: calc(100vw - 260px);
     height: 50px;
 
     position: fixed;
     top: 0px;
     left: 260px;
+
+    transition: all 0.3s ease;
 }
 
-.container .main {
+.container .layout-tabbar.collapse {
+    width: calc(100vw - 55px);
+    left: 55px;
+}
+
+.container .layout-content {
     width: calc(100% - 260px);
     height: calc(100vh - 50px);
     background-color: yellowgreen;
@@ -66,6 +81,13 @@ const $route = useRoute()
 
     padding: 1rem;
     overflow: auto;
+
+    transition: all 0.3s ease;
+}
+
+.container .layout-content.collapse {
+    width: calc(100vw - 55px);
+    left: 55px;
 }
 
 .scrollbar {

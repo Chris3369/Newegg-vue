@@ -15,12 +15,12 @@ import settings from '../settings'
     height: 50px;
     display: flex;
     align-items: center;
-    margin-left: 10px;
+    margin-left: 20px;
 }
 
 .logo img {
-    width: 35px;
-    height: 35px;
+    width: 30px;
+    height: 30px;
 }
 
 .logo p {

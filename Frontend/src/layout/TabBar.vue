@@ -7,8 +7,11 @@
             </el-icon>
 
             <el-breadcrumb :separator-icon="ArrowRight">
-                <el-breadcrumb-item>promotion list</el-breadcrumb-item>
-                <el-breadcrumb-item>promotion detail</el-breadcrumb-item>
+                <el-breadcrumb-item 
+                    v-for="item in $route.matched.filter(item => item.meta.title)" 
+                    :key="item.path">
+                    {{ item.meta.title }}
+                </el-breadcrumb-item>
             </el-breadcrumb>
 
         </div>
@@ -19,12 +22,7 @@
             <img src="/logo.svg" alt="">
 
             <el-dropdown>
-                <span>
-                    <span>admin</span>
-                    <el-icon>
-                        <arrow-down />
-                    </el-icon>
-                </span>
+                <span>admin</span>
                 <template #dropdown>
                     <el-dropdown-menu>
                         <el-dropdown-item>Logout</el-dropdown-item>
@@ -38,6 +36,9 @@
 <script setup lang='ts'>
 import { ArrowRight, Expand, Fold, Refresh, FullScreen, Setting } from '@element-plus/icons-vue'
 import settingStore from '../store/setting.store'
+import { useRoute } from 'vue-router'
+
+const $route = useRoute()
 
 const store = settingStore()
 

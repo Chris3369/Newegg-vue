@@ -3,7 +3,7 @@
         <div class="slider" :class="settingStore.collapse ? 'collapse' : ''">
             <Logo />
             <el-scrollbar class="scrollbar">
-                <el-menu background-color="#001529" text-color="white" active-text-color="#ffd04b"
+                <el-menu :collapse="settingStore.collapse" background-color="#001529" text-color="white" active-text-color="#ffd04b"
                     :default-active="$route.path">
                     <Menu :menus="userStore.menuRoutes"></Menu>
                 </el-menu>

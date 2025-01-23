@@ -16,7 +16,7 @@
 
         </div>
         <div class="right">
-            <el-button type="primary" size="small" circle :icon="Refresh"></el-button>
+            <el-button type="primary" size="small" circle :icon="Refresh" @click="store.toggleRefresh"></el-button>
             <el-button type="primary" size="small" circle :icon="FullScreen"></el-button>
             <el-button type="primary" size="small" circle :icon="Setting"></el-button>
             <img src="/logo.svg" alt="">

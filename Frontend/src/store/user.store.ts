@@ -16,16 +16,10 @@ let userStore = defineStore('user', {
         const userData = localStorage.getItem('user')
         let user = userData ? JSON.parse(userData) : null
 
-        user = user ? {
-            ...user,
-        } : {
-            name: '',
-            email: '',
-            role: '',
-        }
-
         return {
-            ...user,
+            name: user ? user.name : '',
+            email: user ? user.email : '',
+            role: user ? user.role : '',
             menuRoutes: constantRoutes
         }
     },
@@ -61,16 +55,17 @@ let userStore = defineStore('user', {
                 this.name = ''
                 this.email = ''
                 this.role = ''
-                this.menuRoutes = []
 
                 localStorage.removeItem('user')
                 return 'ok'
             } catch (error: any) {
                 return Promise.reject(error.response.data.message)
             }
-        }
+        },
     },
-    getters: {}
+    getters: {
+        isLogin: (state) => state.name !== ''
+    }
 })
 
 export default userStore

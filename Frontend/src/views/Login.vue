@@ -22,12 +22,13 @@
 <script setup lang='ts'>
 import { reactive, ref } from 'vue'
 import { User, Lock } from '@element-plus/icons-vue'
-import { useRouter } from 'vue-router'
+import { useRouter, useRoute } from 'vue-router'
 import { ElNotification } from 'element-plus'
 import userStore from '../store/user.store'
 
 const store = userStore()
 const $router = useRouter()
+const $route = useRoute()
 const loginForm = reactive({ email: 'chris@gmail.com', password: 'Aa12345' })
 const loading = ref(false)
 const login = async () => {
@@ -40,8 +41,10 @@ const login = async () => {
 
     loading.value = false
     
-    // scuccess => home page
-    $router.push({ name: 'home' })
+    // 判斷登入時 是否有帶 query params, 如果沒有跳轉首頁
+    $router.push({
+      path: $route.query.redirect ? $route.query.redirect as string : '/'
+    })
 
     ElNotification({
       title: 'Success',
